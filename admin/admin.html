@@ -2,1240 +2,550 @@
 <html lang="fa" dir="rtl">
 
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>پنل مدیریت MyGoogle</title>
-
-    <style>
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-
-            margin: 0;
-
-            font-family:
-                Arial,
-                Tahoma,
-                sans-serif;
-
-            background: #f5f5f5;
-
-            color: #222;
-
-        }
-
-        .container {
-
-            width: 90%;
-
-            max-width: 1000px;
-
-            margin: 40px auto;
-
-        }
-
-        h1 {
-
-            text-align: center;
-
-            margin-bottom: 30px;
-
-        }
-
-        .stats {
-
-            display: flex;
-
-            gap: 15px;
-
-            margin-bottom: 25px;
-
-        }
-
-        .stat-card {
-
-            flex: 1;
-
-            background: white;
-
-            padding: 20px;
-
-            border-radius: 12px;
-
-            box-shadow:
-                0 2px 10px
-                rgba(0, 0, 0, 0.08);
-
-            text-align: center;
-
-        }
-
-        .stat-number {
-
-            font-size: 32px;
-
-            font-weight: bold;
-
-            margin-top: 8px;
-
-        }
-
-        .card {
-
-            background: white;
-
-            padding: 25px;
-
-            border-radius: 12px;
-
-            box-shadow:
-                0 2px 10px
-                rgba(0, 0, 0, 0.08);
-
-            margin-bottom: 25px;
-
-        }
-
-        .card h2 {
-
-            margin-top: 0;
-
-        }
-
-        input,
-        textarea {
-
-            width: 100%;
-
-            padding: 12px;
-
-            margin-top: 8px;
-
-            margin-bottom: 15px;
-
-            border: 1px solid #ccc;
-
-            border-radius: 8px;
-
-            font-size: 15px;
-
-            font-family: inherit;
-
-        }
-
-        textarea {
-
-            min-height: 100px;
-
-            resize: vertical;
-
-        }
-
-        button {
-
-            border: none;
-
-            padding: 10px 18px;
-
-            border-radius: 8px;
-
-            background: #222;
-
-            color: white;
-
-            cursor: pointer;
-
-            font-size: 14px;
-
-        }
-
-        button:hover {
-
-            opacity: 0.85;
-
-        }
-
-        .delete-button {
-
-            background: #d32f2f;
-
-        }
-
-        .edit-button {
-
-            background: #1976d2;
-
-            margin-left: 8px;
-
-        }
-
-        .cancel-button {
-
-            background: #777;
-
-            margin-right: 8px;
-
-        }
-
-        .save-button {
-
-            background: #16803c;
-
-        }
-
-        .message {
-
-            margin-top: 15px;
-
-            padding: 12px;
-
-            border-radius: 8px;
-
-            display: none;
-
-        }
-
-        .website {
-
-            border: 1px solid #ddd;
-
-            border-radius: 10px;
-
-            padding: 15px;
-
-            margin-top: 12px;
-
-        }
-
-        .website-title {
-
-            font-size: 20px;
-
-            font-weight: bold;
-
-            margin-bottom: 8px;
-
-        }
-
-        .website-url {
-
-            color: #555;
-
-            direction: ltr;
-
-            text-align: left;
-
-            word-break: break-all;
-
-            margin-bottom: 8px;
-
-        }
-
-        .website-description {
-
-            color: #666;
-
-            margin-bottom: 8px;
-
-        }
-
-        .website-id {
-
-            color: #999;
-
-            font-size: 12px;
-
-            margin-bottom: 12px;
-
-        }
-
-        .loading {
-
-            text-align: center;
-
-            color: #777;
-
-        }
-
-        .error {
-
-            color: #c00;
-
-        }
-
-        .edit-form {
-
-            margin-top: 15px;
-
-            padding-top: 15px;
-
-            border-top: 1px solid #ddd;
-
-            display: none;
-
-        }
-
-        .edit-form label {
-
-            display: block;
-
-            margin-top: 8px;
-
-        }
-
-        @media (max-width: 600px) {
-
-            .stats {
-
-                flex-direction: column;
-
-            }
-
-        }
-
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>پنل مدیریت MyGoogle</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin:0;
+    font-family: Arial,Tahoma,sans-serif;
+    background:#f5f5f5;
+    color:#222;
+}
+
+.container {
+    width:90%;
+    max-width:1000px;
+    margin:40px auto;
+}
+
+h1 {
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.card {
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+    margin-bottom:25px;
+}
+
+input,textarea {
+    width:100%;
+    padding:12px;
+    margin-top:8px;
+    margin-bottom:15px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+textarea {
+    min-height:100px;
+}
+
+button {
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    background:#222;
+    color:white;
+}
+
+.website {
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:15px;
+    margin-top:12px;
+}
+
+.website-title {
+    font-size:20px;
+    font-weight:bold;
+}
+
+.website-url {
+    direction:ltr;
+    text-align:left;
+    margin:8px 0;
+}
+
+.delete-button {
+    background:#d32f2f;
+}
+
+.edit-button {
+    background:#1976d2;
+}
+
+.loading {
+    text-align:center;
+    color:#777;
+}
+
+.error {
+    color:red;
+}
+</style>
 
 </head>
 
 
 <body>
 
+<div class="container">
 
-    <div class="container">
-
-
-        <h1>
-            پنل مدیریت MyGoogle
-        </h1>
+<h1>
+پنل مدیریت MyGoogle
+</h1>
 
 
-        <!-- =================================
-             آمار
-        ================================== -->
+<div class="card">
 
-        <div class="stats">
+<h2>
+تعداد سایت‌ها
+</h2>
 
-            <div class="stat-card">
+<div id="websiteCount">
+0
+</div>
 
-                <div>
-                    تعداد سایت‌ها
-                </div>
+</div>
 
-                <div
-                    id="websiteCount"
-                    class="stat-number"
-                >
-                    0
-                </div>
 
+<div class="card">
+
+<h2>
+اضافه کردن سایت
+</h2>
+
+
+<label>
+عنوان
+</label>
+
+<input id="titleInput" type="text">
+
+
+<label>
+آدرس
+</label>
+
+<input id="urlInput" type="text">
+
+
+<label>
+توضیحات
+</label>
+
+<textarea id="descriptionInput"></textarea>
+
+
+<button onclick="addWebsite()">
+ذخیره سایت
+</button>
+
+
+<div id="message"></div>
+
+</div>
+
+
+<div class="card">
+
+<h2>
+سایت‌های ذخیره شده
+</h2>
+
+
+<div id="websites">
+
+<div class="loading">
+در حال دریافت سایت‌ها...
+</div>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<script>
+
+
+const API_URL =
+"https://mygoogle-production.up.railway.app";
+async function loadWebsites() {
+
+    const box = document.getElementById("websites");
+
+    box.innerHTML = `
+        <div class="loading">
+            در حال دریافت سایت‌ها...
+        </div>
+    `;
+
+    try {
+
+        const response = await fetch(
+            API_URL + "/api/websites"
+        );
+
+
+        if (!response.ok) {
+            throw new Error("خطا در دریافت اطلاعات");
+        }
+
+
+        const data = await response.json();
+
+
+        document.getElementById(
+            "websiteCount"
+        ).textContent = data.length;
+
+
+        box.innerHTML = "";
+
+
+        if(data.length === 0){
+
+            box.innerHTML = `
+            <div class="loading">
+            سایتی وجود ندارد
+            </div>
+            `;
+
+            return;
+        }
+
+
+        data.forEach(site => {
+
+
+            const div = document.createElement("div");
+
+            div.className="website";
+
+
+            div.innerHTML = `
+
+            <div class="website-title">
+            ${escapeHTML(site.title)}
             </div>
 
-        </div>
+
+            <div class="website-url">
+            ${escapeHTML(site.url)}
+            </div>
 
 
-        <!-- =================================
-             اضافه کردن سایت
-        ================================== -->
-
-        <div class="card">
-
-            <h2>
-                اضافه کردن سایت جدید
-            </h2>
+            <div>
+            ${escapeHTML(site.description || "")}
+            </div>
 
 
-            <label>
-                عنوان سایت
-            </label>
-
-            <input
-                id="titleInput"
-                type="text"
-                placeholder="مثلاً Facebook"
-            >
+            <br>
 
 
-            <label>
-                آدرس سایت
-            </label>
-
-            <input
-                id="urlInput"
-                type="text"
-                placeholder="https://example.com/"
-            >
-
-
-            <label>
-                توضیحات
-            </label>
-
-            <textarea
-                id="descriptionInput"
-                placeholder="توضیحات سایت..."
-            ></textarea>
-
-
-            <button onclick="addWebsite()">
-                ذخیره سایت
+            <button 
+            class="edit-button"
+            onclick="editWebsite(${site.id})">
+            ویرایش
             </button>
 
 
-            <div
-                id="message"
-                class="message"
-            ></div>
-
-        </div>
-
-
-        <!-- =================================
-             سایت‌های ذخیره شده
-        ================================== -->
-
-        <div class="card">
-
-            <h2>
-                سایت‌های ذخیره شده
-            </h2>
-
-
-            <div id="websites">
-
-                <div class="loading">
-                    در حال دریافت سایت‌ها...
-                </div>
-
-            </div>
-
-        </div>
-
-
-    </div>
-
-
-    <script>
-
-
-        /* ==========================================
-           آدرس Backend
-        ========================================== */
-
-        const API_URL =
-            "http://127.0.0.1:5000";
-
-
-        /* ==========================================
-           دریافت سایت‌ها
-        ========================================== */
-
-        async function loadWebsites() {
-
-
-            const websites =
-                document.getElementById(
-                    "websites"
-                );
-
-
-            websites.innerHTML = `
-
-                <div class="loading">
-
-                    در حال دریافت سایت‌ها...
-
-                </div>
+            <button 
+            class="delete-button"
+            onclick="deleteWebsite(${site.id})">
+            حذف
+            </button>
 
             `;
 
 
-            try {
+            box.appendChild(div);
 
 
-                const response =
-                    await fetch(
-                        API_URL +
-                        "/api/websites"
-                    );
+        });
 
 
-                if (!response.ok) {
+    }
 
-                    throw new Error(
-                        "خطا در دریافت سایت‌ها"
-                    );
+    catch(error){
 
-                }
+        console.error(error);
 
 
-                const data =
-                    await response.json();
+        box.innerHTML = `
 
+        <div class="error">
 
-                /* ==========================
-                   نمایش تعداد سایت‌ها
-                ========================== */
+        اتصال به Backend برقرار نشد.
 
-                document.getElementById(
-                    "websiteCount"
-                ).textContent =
-                    data.length;
+        <br><br>
 
+        مطمئن شو Railway فعال است.
 
-                websites.innerHTML = "";
+        </div>
 
+        `;
 
-                if (data.length === 0) {
+    }
 
-                    websites.innerHTML = `
+}
 
-                        <div class="loading">
 
-                            هنوز سایتی ذخیره نشده است.
 
-                        </div>
+async function addWebsite(){
 
-                    `;
 
-                    return;
+const title =
+document.getElementById("titleInput").value.trim();
 
-                }
 
+const url =
+document.getElementById("urlInput").value.trim();
 
-                data.forEach(
-                    website => {
 
+const description =
+document.getElementById("descriptionInput").value.trim();
 
-                        const item =
-                            document.createElement(
-                                "div"
-                            );
 
 
-                        item.className =
-                            "website";
+if(!title || !url){
 
+alert("عنوان و آدرس الزامی است");
 
-                        item.innerHTML = `
+return;
 
-                            <div class="website-title">
+}
 
-                                ${escapeHTML(
-                                    website.title
-                                )}
 
-                            </div>
 
+try{
 
-                            <div class="website-url">
 
-                                ${escapeHTML(
-                                    website.url
-                                )}
+const response = await fetch(
+API_URL + "/api/websites",
+{
 
-                            </div>
+method:"POST",
 
+headers:{
+"Content-Type":"application/json"
+},
 
-                            <div class="website-description">
 
-                                ${escapeHTML(
-                                    website.description || ""
-                                )}
+body:JSON.stringify({
 
-                            </div>
+title:title,
 
+url:url,
 
-                            <div class="website-id">
+description:description
 
-                                شناسه:
-                                ${website.id}
+})
 
-                            </div>
 
+});
 
-                            <button
-                                class="edit-button"
-                                onclick="showEditForm(
-                                    ${website.id},
-                                    '${escapeAttribute(
-                                        website.title
-                                    )}',
-                                    '${escapeAttribute(
-                                        website.url
-                                    )}',
-                                    '${escapeAttribute(
-                                        website.description || ""
-                                    )}'
-                                )"
-                            >
 
-                                ویرایش
+if(!response.ok){
 
-                            </button>
+throw new Error();
 
+}
 
-                            <button
-                                class="delete-button"
-                                onclick="deleteWebsite(
-                                    ${website.id}
-                                )"
-                            >
 
-                                حذف سایت
 
-                            </button>
+alert("سایت ذخیره شد");
 
 
-                            <div
-                                id="edit-form-${website.id}"
-                                class="edit-form"
-                            >
+document.getElementById("titleInput").value="";
+document.getElementById("urlInput").value="";
+document.getElementById("descriptionInput").value="";
 
-                                <label>
-                                    عنوان جدید
-                                </label>
 
-                                <input
-                                    id="edit-title-${website.id}"
-                                    type="text"
-                                >
+loadWebsites();
 
 
-                                <label>
-                                    آدرس جدید
-                                </label>
+}
 
-                                <input
-                                    id="edit-url-${website.id}"
-                                    type="text"
-                                >
+catch(error){
 
+alert("خطا در ذخیره سایت");
 
-                                <label>
-                                    توضیحات جدید
-                                </label>
+}
 
-                                <textarea
-                                    id="edit-description-${website.id}"
-                                ></textarea>
 
+}async function deleteWebsite(id){
 
-                                <button
-                                    class="save-button"
-                                    onclick="updateWebsite(
-                                        ${website.id}
-                                    )"
-                                >
+    if(!confirm("آیا مطمئنی می‌خواهی حذف کنی؟")){
+        return;
+    }
 
-                                    ذخیره تغییرات
 
-                                </button>
+    try{
 
 
-                                <button
-                                    class="cancel-button"
-                                    onclick="cancelEdit(
-                                        ${website.id}
-                                    )"
-                                >
-
-                                    لغو
-
-                                </button>
-
-                            </div>
-
-                        `;
-
-
-                        websites.appendChild(
-                            item
-                        );
-
-                    }
-                );
-
-
-            } catch (error) {
-
-
-                console.error(error);
-
-
-                websites.innerHTML = `
-
-                    <div class="error">
-
-                        اتصال به Backend برقرار نشد.
-
-                        <br><br>
-
-                        مطمئن شو سرور MyGoogle
-                        در حال اجراست.
-
-                    </div>
-
-                `;
-
+        const response = await fetch(
+            API_URL + "/api/websites/" + id,
+            {
+                method:"DELETE"
             }
+        );
 
+
+        if(!response.ok){
+            throw new Error();
         }
 
 
-        /* ==========================================
-           اضافه کردن سایت
-        ========================================== */
+        alert("سایت حذف شد");
 
-        async function addWebsite() {
-
-
-            const titleInput =
-                document.getElementById(
-                    "titleInput"
-                );
-
-
-            const urlInput =
-                document.getElementById(
-                    "urlInput"
-                );
-
-
-            const descriptionInput =
-                document.getElementById(
-                    "descriptionInput"
-                );
-
-
-            const title =
-                titleInput.value.trim();
-
-
-            const url =
-                urlInput.value.trim();
-
-
-            const description =
-                descriptionInput.value.trim();
-
-
-            if (
-                title === "" ||
-                url === ""
-            ) {
-
-                showMessage(
-                    "عنوان و آدرس سایت الزامی است.",
-                    true
-                );
-
-                return;
-
-            }
-
-
-            try {
-
-
-                const response =
-                    await fetch(
-                        API_URL +
-                        "/api/websites",
-                        {
-
-                            method: "POST",
-
-                            headers: {
-
-                                "Content-Type":
-                                    "application/json"
-
-                            },
-
-                            body:
-                                JSON.stringify({
-
-                                    title:
-                                        title,
-
-                                    url:
-                                        url,
-
-                                    description:
-                                        description
-
-                                })
-
-                        }
-                    );
-
-
-                const data =
-                    await response.json();
-
-
-                if (!response.ok) {
-
-                    throw new Error(
-                        data.error ||
-                        "خطا در ذخیره سایت"
-                    );
-
-                }
-
-
-                showMessage(
-                    "سایت با موفقیت ذخیره شد.",
-                    false
-                );
-
-
-                titleInput.value = "";
-
-                urlInput.value = "";
-
-                descriptionInput.value = "";
-
-
-                loadWebsites();
-
-
-            } catch (error) {
-
-
-                console.error(error);
-
-
-                showMessage(
-                    error.message,
-                    true
-                );
-
-            }
-
-        }
-
-
-        /* ==========================================
-           نمایش فرم ویرایش
-        ========================================== */
-
-        function showEditForm(
-            websiteId,
-            title,
-            url,
-            description
-        ) {
-
-
-            const form =
-                document.getElementById(
-                    "edit-form-" +
-                    websiteId
-                );
-
-
-            const titleInput =
-                document.getElementById(
-                    "edit-title-" +
-                    websiteId
-                );
-
-
-            const urlInput =
-                document.getElementById(
-                    "edit-url-" +
-                    websiteId
-                );
-
-
-            const descriptionInput =
-                document.getElementById(
-                    "edit-description-" +
-                    websiteId
-                );
-
-
-            titleInput.value =
-                title;
-
-
-            urlInput.value =
-                url;
-
-
-            descriptionInput.value =
-                description;
-
-
-            form.style.display =
-                "block";
-
-        }
-
-
-        /* ==========================================
-           لغو ویرایش
-        ========================================== */
-
-        function cancelEdit(
-            websiteId
-        ) {
-
-
-            const form =
-                document.getElementById(
-                    "edit-form-" +
-                    websiteId
-                );
-
-
-            form.style.display =
-                "none";
-
-        }
-
-
-        /* ==========================================
-           ذخیره ویرایش
-        ========================================== */
-
-        async function updateWebsite(
-            websiteId
-        ) {
-
-
-            const titleInput =
-                document.getElementById(
-                    "edit-title-" +
-                    websiteId
-                );
-
-
-            const urlInput =
-                document.getElementById(
-                    "edit-url-" +
-                    websiteId
-                );
-
-
-            const descriptionInput =
-                document.getElementById(
-                    "edit-description-" +
-                    websiteId
-                );
-
-
-            const title =
-                titleInput.value.trim();
-
-
-            const url =
-                urlInput.value.trim();
-
-
-            const description =
-                descriptionInput.value.trim();
-
-
-            if (
-                title === "" ||
-                url === ""
-            ) {
-
-                showMessage(
-                    "عنوان و آدرس سایت الزامی است.",
-                    true
-                );
-
-                return;
-
-            }
-
-
-            try {
-
-
-                const response =
-                    await fetch(
-
-                        API_URL +
-                        "/api/websites/" +
-                        websiteId,
-
-                        {
-
-                            method: "PUT",
-
-                            headers: {
-
-                                "Content-Type":
-                                    "application/json"
-
-                            },
-
-                            body:
-                                JSON.stringify({
-
-                                    title:
-                                        title,
-
-                                    url:
-                                        url,
-
-                                    description:
-                                        description
-
-                                })
-
-                        }
-
-                    );
-
-
-                const data =
-                    await response.json();
-
-
-                if (!response.ok) {
-
-                    throw new Error(
-                        data.error ||
-                        "خطا در ویرایش سایت"
-                    );
-
-                }
-
-
-                showMessage(
-                    "سایت با موفقیت ویرایش شد.",
-                    false
-                );
-
-
-                loadWebsites();
-
-
-            } catch (error) {
-
-
-                console.error(error);
-
-
-                showMessage(
-                    error.message,
-                    true
-                );
-
-            }
-
-        }
-
-
-        /* ==========================================
-           حذف سایت
-        ========================================== */
-
-        async function deleteWebsite(
-            websiteId
-        ) {
-
-
-            const confirmed =
-                confirm(
-                    "آیا مطمئنی می‌خواهی این سایت حذف شود؟"
-                );
-
-
-            if (!confirmed) {
-
-                return;
-
-            }
-
-
-            try {
-
-
-                const response =
-                    await fetch(
-
-                        API_URL +
-                        "/api/websites/" +
-                        websiteId,
-
-                        {
-
-                            method: "DELETE"
-
-                        }
-
-                    );
-
-
-                const data =
-                    await response.json();
-
-
-                if (!response.ok) {
-
-                    throw new Error(
-                        data.error ||
-                        "خطا در حذف سایت"
-                    );
-
-                }
-
-
-                showMessage(
-                    "سایت با موفقیت حذف شد.",
-                    false
-                );
-
-
-                loadWebsites();
-
-
-            } catch (error) {
-
-
-                console.error(error);
-
-
-                showMessage(
-                    error.message,
-                    true
-                );
-
-            }
-
-        }
-
-
-        /* ==========================================
-           نمایش پیام
-        ========================================== */
-
-        function showMessage(
-            text,
-            isError
-        ) {
-
-
-            const message =
-                document.getElementById(
-                    "message"
-                );
-
-
-            message.textContent =
-                text;
-
-
-            message.style.display =
-                "block";
-
-
-            if (isError) {
-
-                message.style.background =
-                    "#ffe5e5";
-
-                message.style.color =
-                    "#b00000";
-
-            } else {
-
-                message.style.background =
-                    "#e5ffe9";
-
-                message.style.color =
-                    "#087f23";
-
-            }
-
-        }
-
-
-        /* ==========================================
-           امنیت HTML
-        ========================================== */
-
-        function escapeHTML(text) {
-
-            return String(text)
-
-                .replace(
-                    /&/g,
-                    "&amp;"
-                )
-
-                .replace(
-                    /</g,
-                    "&lt;"
-                )
-
-                .replace(
-                    />/g,
-                    "&gt;"
-                )
-
-                .replace(
-                    /"/g,
-                    "&quot;"
-                )
-
-                .replace(
-                    /'/g,
-                    "&#039;"
-                );
-
-        }
-
-
-        /* ==========================================
-           امنیت Attribute
-        ========================================== */
-
-        function escapeAttribute(text) {
-
-            return String(text)
-
-                .replace(
-                    /\\/g,
-                    "\\\\"
-                )
-
-                .replace(
-                    /'/g,
-                    "\\'"
-                )
-
-                .replace(
-                    /"/g,
-                    "&quot;"
-                );
-
-        }
-
-
-        /* ==========================================
-           شروع صفحه
-        ========================================== */
 
         loadWebsites();
 
 
-    </script>
+    }
+    catch(error){
+
+        alert("خطا در حذف سایت");
+
+    }
+
+}
+
+
+
+
+async function editWebsite(id){
+
+
+    const title = prompt(
+        "عنوان جدید را وارد کن:"
+    );
+
+
+    if(title === null){
+        return;
+    }
+
+
+    const url = prompt(
+        "آدرس جدید را وارد کن:"
+    );
+
+
+    if(url === null){
+        return;
+    }
+
+
+
+    const description = prompt(
+        "توضیحات جدید:"
+    );
+
+
+
+    try{
+
+
+        const response = await fetch(
+            API_URL + "/api/websites/" + id,
+            {
+
+                method:"PUT",
+
+                headers:{
+                    "Content-Type":
+                    "application/json"
+                },
+
+
+                body:JSON.stringify({
+
+                    title:title,
+
+                    url:url,
+
+                    description:description || ""
+
+                })
+
+            }
+        );
+
+
+
+        if(!response.ok){
+
+            throw new Error();
+
+        }
+
+
+
+        alert("ویرایش شد");
+
+
+        loadWebsites();
+
+
+
+    }
+    catch(error){
+
+        alert("خطا در ویرایش");
+
+    }
+
+
+}
+
+
+
+
+
+function escapeHTML(text){
+
+    return String(text)
+
+    .replace(/&/g,"&amp;")
+
+    .replace(/</g,"&lt;")
+
+    .replace(/>/g,"&gt;")
+
+    .replace(/"/g,"&quot;")
+
+    .replace(/'/g,"&#039;");
+
+}
+
+
+
+window.onload = function(){
+
+    loadWebsites();
+
+};
+
+
+</script>
 
 
 </body>
