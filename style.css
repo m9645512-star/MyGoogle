@@ -1,0 +1,388 @@
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+
+    margin: 0;
+
+    font-family:
+        Arial,
+        Tahoma,
+        sans-serif;
+
+    background: #ffffff;
+
+    color: #202124;
+
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+
+    height: 70px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 30px;
+
+}
+
+
+.logo {
+
+    font-size: 24px;
+
+    font-weight: bold;
+
+}
+
+
+.header-buttons button {
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    color: #555;
+
+}
+
+
+.header-buttons button:hover {
+
+    text-decoration: underline;
+
+}
+
+
+/* =========================
+   GOOGLE COLORS
+========================= */
+
+.blue {
+    color: #4285f4;
+}
+
+.red {
+    color: #ea4335;
+}
+
+.yellow {
+    color: #fbbc05;
+}
+
+.green {
+    color: #34a853;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+main {
+
+    min-height:
+        calc(100vh - 120px);
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    padding-top: 120px;
+
+}
+
+
+/* =========================
+   TITLE
+========================= */
+
+.google-title {
+
+    font-size: 80px;
+
+    font-weight: 500;
+
+    letter-spacing: -5px;
+
+    margin-bottom: 35px;
+
+}
+
+
+/* =========================
+   SEARCH BOX
+========================= */
+
+.search-container {
+
+    width: 600px;
+
+    max-width: 90%;
+
+    height: 52px;
+
+    border: 1px solid #dfe1e5;
+
+    border-radius: 28px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 18px;
+
+    transition: 0.2s;
+
+}
+
+
+.search-container:hover {
+
+    box-shadow:
+        0 1px 6px rgba(32, 33, 36, 0.2);
+
+}
+
+
+.search-container:focus-within {
+
+    box-shadow:
+        0 1px 6px rgba(32, 33, 36, 0.25);
+
+}
+
+
+.search-icon {
+
+    font-size: 19px;
+
+    margin-left: 12px;
+
+}
+
+
+.search-container input {
+
+    flex: 1;
+
+    height: 100%;
+
+    border: none;
+
+    outline: none;
+
+    font-size: 17px;
+
+    direction: rtl;
+
+    background: transparent;
+
+}
+
+
+.clear-button {
+
+    border: none;
+
+    background: transparent;
+
+    font-size: 25px;
+
+    color: #777;
+
+    cursor: pointer;
+
+    display: none;
+
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.search-buttons {
+
+    margin-top: 30px;
+
+}
+
+
+.search-buttons button {
+
+    border: 1px solid #f8f9fa;
+
+    background: #f8f9fa;
+
+    padding: 11px 20px;
+
+    margin: 5px;
+
+    border-radius: 5px;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+}
+
+
+.search-buttons button:hover {
+
+    border-color: #dadce0;
+
+    box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.1);
+
+}
+
+
+/* =========================
+   RESULTS
+========================= */
+
+#results {
+
+    width: 700px;
+
+    max-width: 90%;
+
+    margin-top: 50px;
+
+}
+
+
+.result {
+
+    padding: 18px 5px;
+
+    border-bottom: 1px solid #eeeeee;
+
+}
+
+
+.result-url {
+
+    color: #188038;
+
+    font-size: 14px;
+
+    margin-bottom: 5px;
+
+}
+
+
+.result-title {
+
+    color: #1a0dab;
+
+    font-size: 20px;
+
+    margin: 5px 0;
+
+    cursor: pointer;
+
+}
+
+
+.result-title:hover {
+
+    text-decoration: underline;
+
+}
+
+
+.result-description {
+
+    color: #4d5156;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+}
+
+
+.no-results {
+
+    text-align: center;
+
+    color: #666;
+
+    padding: 30px;
+
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+    height: 50px;
+
+    background: #f2f2f2;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #666;
+
+    font-size: 13px;
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    main {
+
+        padding-top: 80px;
+
+    }
+
+    .google-title {
+
+        font-size: 55px;
+
+    }
+
+    .search-container {
+
+        width: 90%;
+
+    }
+
+    #results {
+
+        width: 90%;
+
+    }
+
+}

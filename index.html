@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>MyGoogle</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <header>
+
+        <div class="logo">
+            <span class="blue">M</span><span class="red">y</span><span class="yellow">G</span><span class="blue">o</span><span class="green">o</span><span class="red">g</span><span class="blue">l</span><span class="red">e</span>
+        </div>
+
+        <div class="header-buttons">
+
+            <button onclick="showAbout()">
+                درباره MyGoogle
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <div class="google-title">
+
+            <span class="blue">M</span>
+            <span class="red">y</span>
+            <span class="yellow">G</span>
+            <span class="blue">o</span>
+            <span class="green">o</span>
+            <span class="red">g</span>
+            <span class="blue">l</span>
+            <span class="red">e</span>
+
+        </div>
+
+
+        <div class="search-container">
+
+            <span class="search-icon">
+                🔍
+            </span>
+
+            <input
+                id="searchInput"
+                type="text"
+                placeholder="جستجو در MyGoogle..."
+                autocomplete="off"
+            >
+
+            <button
+                class="clear-button"
+                id="clearButton"
+                onclick="clearSearch()">
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="search-buttons">
+
+            <button onclick="search()">
+                جستجوی MyGoogle
+            </button>
+
+            <button onclick="randomSearch()">
+                جستجوی شانسی
+            </button>
+
+        </div>
+
+
+        <div id="results">
+
+        </div>
+
+    </main>
+
+
+    <footer>
+
+        <span>
+            MyGoogle © 2026
+        </span>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>backend
