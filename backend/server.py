@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 import sqlite3
 import os
@@ -6,16 +6,7 @@ import os
 
 # ==========================================
 # MyGoogle Backend
-# Render Ready
-# ==========================================
-
-app = Flask(__name__)
-
-CORS(app)
-
-
-# ==========================================
-# Database Path
+# Railway Ready
 # ==========================================
 
 BASE_DIR = os.path.dirname(
@@ -23,6 +14,19 @@ BASE_DIR = os.path.dirname(
         os.path.abspath(__file__)
     )
 )
+
+app = Flask(
+    __name__,
+    static_folder=BASE_DIR,
+    static_url_path=""
+)
+
+CORS(app)
+
+
+# ==========================================
+# Database Path
+# ==========================================
 
 DATABASE_FOLDER = os.path.join(
     BASE_DIR,
@@ -41,7 +45,6 @@ os.makedirs(
 )
 
 
-
 # ==========================================
 # Database Connection
 # ==========================================
@@ -54,11 +57,7 @@ def get_database():
 
     connection.row_factory = sqlite3.Row
 
-    return connection
-
-
-
-# ==========================================
+    return connection# ==========================================
 # Create Table
 # ==========================================
 
@@ -67,7 +66,6 @@ def create_database():
     connection = get_database()
 
     cursor = connection.cursor()
-
 
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS websites (
@@ -83,7 +81,6 @@ def create_database():
         )
     """)
 
-
     connection.commit()
 
     connection.close()
@@ -91,7 +88,7 @@ def create_database():
 
 
 # ==========================================
-# Default Data
+# Default Websites
 # ==========================================
 
 def add_default_websites():
@@ -165,15 +162,16 @@ def add_default_websites():
 
 
     connection.close()# ==========================================
-# Home API
+# Website Home Page
 # ==========================================
 
-@app.route("/", methods=["GET"])
+@app.route("/")
 def home():
 
-    return jsonify({
-        "status": "MyGoogle Backend Running"
-    })
+    return send_from_directory(
+        BASE_DIR,
+        "index.html"
+    )
 
 
 
@@ -181,7 +179,10 @@ def home():
 # Search API
 # ==========================================
 
-@app.route("/api/search", methods=["GET"])
+@app.route(
+    "/api/search",
+    methods=["GET"]
+)
 def search():
 
     query = request.args.get(
@@ -237,16 +238,14 @@ def search():
     return jsonify([
         dict(row)
         for row in rows
-    ])
-
-
-
-
-# ==========================================
+    ])# ==========================================
 # Get All Websites
 # ==========================================
 
-@app.route("/api/websites", methods=["GET"])
+@app.route(
+    "/api/websites",
+    methods=["GET"]
+)
 def get_websites():
 
     connection = get_database()
@@ -280,7 +279,10 @@ def get_websites():
 # Add Website
 # ==========================================
 
-@app.route("/api/websites", methods=["POST"])
+@app.route(
+    "/api/websites",
+    methods=["POST"]
+)
 def add_website():
 
     data = request.get_json()
@@ -293,9 +295,17 @@ def add_website():
         }), 400
 
 
-    title = data.get("title", "").strip()
+    title = data.get(
+        "title",
+        ""
+    ).strip()
 
-    url = data.get("url", "").strip()
+
+    url = data.get(
+        "url",
+        ""
+    ).strip()
+
 
     description = data.get(
         "description",
@@ -303,14 +313,11 @@ def add_website():
     ).strip()
 
 
-
     if title == "" or url == "":
 
         return jsonify({
-            "error":
-            "Title and URL required"
+            "error": "Title and URL required"
         }), 400
-
 
 
     connection = get_database()
@@ -351,12 +358,7 @@ def add_website():
 
         "id": new_id
 
-    })
-
-
-
-
-# ==========================================
+    })# ==========================================
 # Delete Website
 # ==========================================
 
@@ -426,7 +428,6 @@ def update_website(id):
     ).strip()
 
 
-
     connection = get_database()
 
     cursor = connection.cursor()
@@ -463,12 +464,7 @@ def update_website(id):
 
         "success": True
 
-    })
-
-
-
-
-# ==========================================
+    })# ==========================================
 # Start Server
 # ==========================================
 
