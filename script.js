@@ -1,20 +1,23 @@
-/* ==========================================
+/*
+==========================================
    MyGoogle
    Frontend Version 2.0
-========================================== */
+==========================================
+*/
 
-const API_URL = "http://127.0.0.1:5000";
+const API_URL = "https://mygoogle-production.up.railway.app";
 
 
-/* ==========================================
+/*
+==========================================
    SEARCH
-========================================== */
+==========================================
+*/
 
 async function search() {
 
     const input = document.getElementById("searchInput");
     const results = document.getElementById("results");
-
     const query = input.value.trim();
 
     results.innerHTML = "";
@@ -30,11 +33,13 @@ async function search() {
         return;
     }
 
+
     results.innerHTML = `
         <div class="no-results">
             در حال جستجو...
         </div>
     `;
+
 
     try {
 
@@ -44,13 +49,19 @@ async function search() {
             encodeURIComponent(query)
         );
 
+
         if (!response.ok) {
+
             throw new Error("Search failed");
+
         }
+
 
         const data = await response.json();
 
+
         results.innerHTML = "";
+
 
         if (data.length === 0) {
 
@@ -63,7 +74,10 @@ async function search() {
             `;
 
             return;
+
         }
+
+
 
         data.forEach(item => {
 
@@ -71,34 +85,48 @@ async function search() {
 
             result.className = "result";
 
+
             result.innerHTML = `
 
                 <div class="result-url">
+
                     ${escapeHTML(item.url)}
+
                 </div>
+
 
                 <div
                     class="result-title"
                     onclick="openResult('${escapeAttribute(item.url)}')"
                 >
+
                     ${escapeHTML(item.title)}
+
                 </div>
 
+
                 <div class="result-description">
+
                     ${escapeHTML(item.description || "")}
+
                 </div>
 
             `;
+
 
             results.appendChild(result);
 
         });
 
+
     } catch (error) {
+
 
         console.error(error);
 
+
         results.innerHTML = `
+
             <div class="no-results">
 
                 اتصال به سرور MyGoogle برقرار نشد.
@@ -108,6 +136,7 @@ async function search() {
                 مطمئن شو Backend در حال اجراست.
 
             </div>
+
         `;
 
     }
@@ -115,9 +144,13 @@ async function search() {
 }
 
 
-/* ==========================================
+
+/*
+==========================================
    OPEN RESULT
-========================================== */
+==========================================
+*/
+
 
 function openResult(url) {
 
@@ -129,14 +162,22 @@ function openResult(url) {
 }
 
 
-/* ==========================================
+
+/*
+==========================================
    ENTER KEY
-========================================== */
+==========================================
+*/
+
 
 document
+
     .getElementById("searchInput")
+
     .addEventListener(
+
         "keydown",
+
         function(event) {
 
             if (event.key === "Enter") {
@@ -146,60 +187,84 @@ document
             }
 
         }
+
     );
 
 
-/* ==========================================
+
+/*
+==========================================
    CLEAR SEARCH
-========================================== */
+==========================================
+*/
+
 
 function clearSearch() {
 
     const input =
         document.getElementById("searchInput");
 
+
     const results =
         document.getElementById("results");
 
+
     input.value = "";
 
+
     results.innerHTML = "";
+
 
     input.focus();
 
 }
 
 
-/* ==========================================
+
+/*
+==========================================
    CLEAR BUTTON
-========================================== */
+==========================================
+*/
+
 
 document
+
     .getElementById("searchInput")
+
     .addEventListener(
+
         "input",
+
         function() {
+
 
             const clearButton =
                 document.getElementById("clearButton");
 
+
             if (this.value.length > 0) {
+
 
                 clearButton.style.display = "block";
 
+
             } else {
+
 
                 clearButton.style.display = "none";
 
+
             }
 
+
         }
-    );
 
-
-/* ==========================================
+    );/*
+==========================================
    RANDOM SEARCH
-========================================== */
+==========================================
+*/
 
 async function randomSearch() {
 
@@ -211,28 +276,45 @@ async function randomSearch() {
                 "/api/websites"
             );
 
+
         const websites =
             await response.json();
 
+
+
         if (websites.length === 0) {
+
             return;
+
         }
+
+
 
         const randomIndex =
             Math.floor(
                 Math.random() * websites.length
             );
 
+
+
         const randomWebsite =
             websites[randomIndex];
+
+
 
         const input =
             document.getElementById("searchInput");
 
+
+
         input.value =
             randomWebsite.title;
 
+
+
         search();
+
+
 
     } catch (error) {
 
@@ -243,9 +325,13 @@ async function randomSearch() {
 }
 
 
-/* ==========================================
+
+/*
+==========================================
    ABOUT
-========================================== */
+==========================================
+*/
+
 
 function showAbout() {
 
@@ -266,11 +352,16 @@ function showAbout() {
 }
 
 
-/* ==========================================
+
+/*
+==========================================
    HTML SECURITY
-========================================== */
+==========================================
+*/
+
 
 function escapeHTML(text) {
+
 
     return String(text)
 
@@ -284,14 +375,20 @@ function escapeHTML(text) {
 
         .replace(/'/g, "&#039;");
 
+
 }
 
 
-/* ==========================================
+
+/*
+==========================================
    ATTRIBUTE SECURITY
-========================================== */
+==========================================
+*/
+
 
 function escapeAttribute(text) {
+
 
     return String(text)
 
@@ -300,5 +397,6 @@ function escapeAttribute(text) {
         .replace(/'/g, "\\'")
 
         .replace(/"/g, "&quot;");
+
 
 }
